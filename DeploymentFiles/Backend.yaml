@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-recommendation
+  template:
+    metadata:
+      labels:
+        app: movie-recommendation
+    spec:
+      containers:
+        - name: frontend
+          image: neerajpandey1/movie-recommendation:frontend
+          ports:
+            - containerPort: 3000
+        - name: backend
+          image: neerajpandey1/movie-recommendation:backend
+          ports:
+            - containerPort: 8000
